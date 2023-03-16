@@ -1,0 +1,86 @@
+Proses order makanan/minuman via online
+
+-> Menjumlahkan total harga pesanan dan menu pesanan user
+-> Melakukan konfirmasi pesanan user
+
+READ AND WRITE "pesanan_user" with string
+READ AND WRITE "total_pesanan_user" with string
+READ AND WRITE "harga" with number
+READ AND WRITE "total_harga" with number
+READ AND WRITE "pilihan" with number
+READ AND WRITE "total_harga_akhir" with number
+READ AND WRITE "ulangi" with char
+READ AND WRITE "pemesanan" with char
+
+PROCEDURE tampilMenu()
+    PRINT "MENU MAKANAN dan MINUMAN"
+    PRINT "1. Bakso     Rp.15.000\n"
+    PRINT "2. Sate Ayam Rp.15.000\n"
+    PRINT "3. Es Jeruk  Rp.5.000\n"
+    PRINT "4. Es Teh    Rp.5.000\n"
+END PROCEDURE
+
+STORE "ulangi" with 'y'
+STORE "total_harga" with 0
+
+WHILE "ulangi=='y'"
+    DO
+
+    CALL tampilMenu()
+
+    PRINT "masukan menu yang ingin dipesan"
+
+    STORE "pilihan" with datauser
+
+    SWITCH(pilihan)
+        case 1 : STORE "pesanan_user" with "Bakso\n"
+             PRINT "Masukkan jumlah pesanan: "
+             STORE "jumlah_pesanan" with datauser
+             STORE "total_harga" with 15000 times "jumlah_pesanan"
+             PRINT "total_harga"
+        BREAK
+
+        case 2 : STORE "pesanan_user" with "Sate Ayam\n"
+             PRINT "Masukkan jumlah pesanan: "
+             STORE "jumlah_pesanan" with datauser
+             STORE "total_harga" with 15000 times "jumlah_pesanan"
+             PRINT "total_harga"
+        BREAK
+
+        case 3 : STORE "pesanan_user" with "Es Jeruk\n"
+             PRINT "Masukkan jumlah pesanan: "
+             STORE "jumlah_pesanan" with datauser
+             STORE "total_harga" with 5000 times "jumlah_pesanan"
+             PRINT "total_harga"
+        BREAK
+
+        case 4 : STORE "pesanan_user" with "Es Teh\n"
+             PRINT "Masukkan jumlah pesanan: "
+             STORE "jumlah_pesanan" with datauser
+             STORE "total_harga" with 5000 times "jumlah_pesanan"
+             PRINT "total_harga"
+        BREAK
+
+        default : PRINT "Menu pilihan tidak ada"
+                  STORE "ulangi" with 'y'
+    END CASE 
+
+    STORE "total_harga_akhir" with "total_harga_akhir" calculate "total_harga"
+    STORE "total_pesanan_user" with "total_pesanan_user" calculate "pesanan_user"
+    PRINT "Ingin memesan lagi? (y/t)"
+    STORE "ulangi" with datauser
+
+    IF "ulangi == 't'"
+        PRINT "KONFIRMASI PESANAN ANDA\n"
+        PRINT "Pesanan : "total_pesanan_user" "
+        PRINT "Total Harga : "total_harga_akhir" "
+        PRINT "lakukan pemesanan? (y/t)"
+        STORE "pemesanan" with datauser
+        IF "pemesanan == 'y'"
+            PRINT "Pemesanan berhasil"
+        ELSE
+            "Pesanan dibatalkan"
+            STORE "ulangi" with 'y'
+    ELSE
+        STORE "ulangi" with 'y'    
+
